@@ -1,0 +1,19 @@
+ string html = string.Empty;
+            string url = @"http://bb.kkhy44.cn/?s=vod-read-id-40531.html?c=1586001731";
+
+
+            CookieContainer cookieContainer = new CookieContainer();
+            cookieContainer.Add(new Cookie("waf_cookie", "e3a2da7f-efa3-457614eebfc2cdd99d5fac3dd00cb9e90ec3") { Domain = "bb.kkhy44.cn" });
+            cookieContainer.Add(new Cookie("PHPSESSID", "1v7u020qvf4r19scrkfbrt2gt2") { Domain = "bb.kkhy44.cn" });
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+            request.CookieContainer = cookieContainer;
+            request.Accept = "text/html";
+            request.Method = "GET";
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                html = reader.ReadToEnd();
+            }
